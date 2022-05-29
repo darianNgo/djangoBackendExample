@@ -3,6 +3,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from base.models import Item
 from .serializers import ItemSerializer
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 @api_view(['GET'])
 def getData(request):
@@ -20,3 +23,14 @@ def addItem(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
+# @api_view(['GET'])
+# def getUsers(request):
+#     # users = get_user_model().objects.all()
+#     users = []
+#     for user in User.object.all():
+#         users.append(user.get)
+
+#     print(users)
+#     serializer = ItemSerializer(users, many=True)
+#     return Response(serializer.data)
